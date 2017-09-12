@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>The Wall</title>
+  </head>
+  <body>
+    <header>
+      <p>THE WALL</p>
+      <a href="/home">Homepage</a>
+    </header>
+    <div id="wrapper">
+      <div id="message">
+        <h3>Post a message</h3>
+        <form class="" action="/message" method="post">
+          <input type="textarea" name="message" value="">
+          <input type="submit" name="" value="Post Message">
+        </form>
+      </div>
+      <div id="wall">
+        {% for post in box.values() %}
+          <div class="post">
+            <h2>{{ post['name'] }} - {{ post['time'] }}</h2>
+            <h2>{{ post['messages_content'] }}</h2>
+            <div class="all_comments">
+              {% for comment in post['comments'] %}
+                <div class="comment">
+                  <p>{{ comment['commenter_name'] }} - {{ comment['comment_time'] }}</p>
+                  <p>{{ comment['comment'] }}</p>
+                </div>
+              {% endfor %}
+            </div>
+            <p>Post a comment:</p>
+            <form class="" action="/comment" method="post">
+              <input type="hidden" name="msgid" value="{{ post['id'] }}">
+              <input type="textarea" name="comment" value="">
+              <input type="submit" name="" value="Post Comment">
+            </form>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>

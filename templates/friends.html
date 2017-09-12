@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Friends</title>
+  </head>
+  <body>
+    <div id="wrapper">
+      <h2>Friends:</h2>
+      <div class="friendlist">
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Friends Since</th>
+            {% for friend in friends %}
+              <tr>
+                <td>{{ friend['name'] }}</td>
+                <td>{{ friend['email' ]}}</td>
+                <td>{{ friend['friends_since'] }}</td>
+              </tr>
+            {% endfor %}
+          </tr>
+        </table>
+      </div>
+      <h3>Add a Friend:</h3>
+      <div class="error">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+      <form class="" action="/addfriend" method="post">
+        <p>Email: <input type="text" name="email" value=""></p>
+        <input type="submit" name="" value="Submit">
+      </form>
+      <form class="" action="/home" method="post">
+        <input type="submit" name="" value="Homepage">
+      </form>
+    </div>
+  </body>
+</html>
